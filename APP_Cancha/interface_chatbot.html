@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatBot Canchas</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+    .user { color: blue; }
+    .bot { color: green; }
+  </style>
+</head>
+<body>
+  <h1>ChatBot Reservas</h1>
+  <div id="chat"></div>
+  <input type="text" id="input" placeholder="Escribe tu mensaje..." />
+  <button onclick="sendMessage()">Enviar</button>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("input");
+      const message = input.value;
+      if (!message) return;
+
+      const chat = document.getElementById("chat");
+      chat.innerHTML += `<div class="user">Tú: ${message}</div>`;
+
+      fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      })
+      .then(res => res.json())
+      .then(data => {
+        chat.innerHTML += `<div class="bot">Bot: ${data.response}</div>`;
+        chat.scrollTop = chat.scrollHeight;
+      });
+
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
