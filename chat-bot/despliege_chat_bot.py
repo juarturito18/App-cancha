@@ -7,11 +7,11 @@ from nltk.stem import WordNetLemmatizer
 from keras.models import load_model
 
 lemmatizer = WordNetLemmatizer()
-intents = json.loads(open(r"APP_Cancha\respuestas.json").read())
+intents = json.loads(open(r"info\respuestas.json").read())
 
-words = pickle.load(open("words.pkl","rb"))
-clases = pickle.load(open("clases.pkl", "rb"))
-model = load_model("Chatbot_cancha.keras")
+words = pickle.load(open(r"chat-bot\words.pkl","rb"))
+clases = pickle.load(open(r"chat-bot\clases.pkl", "rb"))
+model = load_model(r"chat-bot\Chatbot_cancha.keras")
 
 def clean_sentence(sentence): 
     sentence_words = nltk.word_tokenize(sentence)
@@ -44,11 +44,12 @@ def get_response(tag, intents_json):
     return result
 
 while True:
+    if message.lower() in ["adios", "hasta luego", "termine", "esto es todo", "acabe"]:
+        break
+    
     message = input("-->")
     ints = predict_class(message)
     res = get_response(ints, intents)
     print(res)
 
-    if message.lower() in ["adios", "hasta luego", "termine", "esto es todo", "acabe"]:
-        break
 

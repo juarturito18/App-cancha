@@ -6,7 +6,7 @@ mapa = fl.Map(location=[10.96854, -74.78132], zoom_start = 14, tiles = "CartoDB 
 
 fl.TileLayer('openstreetmap', name='Openstreetmap').add_to(mapa)
 
-data = pd.read_csv("canchas_barranquilla.csv")
+data = pd.read_csv("info\canchas_barranquilla.csv")
 
 name = list(data["Nombre"])
 barrio = list(data["Barrio"])

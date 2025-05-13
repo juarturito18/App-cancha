@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c46e3b03046d6b05d7ad90cd51aa6293 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_c46e3b03046d6b05d7ad90cd51aa6293" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c46e3b03046d6b05d7ad90cd51aa6293 = L.map(
+                "map_c46e3b03046d6b05d7ad90cd51aa6293",
+                {
+                    center: [10.96854, -74.78132],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0772a07c0660c7e34a57934e432c0a48 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_0772a07c0660c7e34a57934e432c0a48.addTo(map_c46e3b03046d6b05d7ad90cd51aa6293);
+        
+    
+            var tile_layer_d60be921136e2a63858ee6bdec0d98c6 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d60be921136e2a63858ee6bdec0d98c6.addTo(map_c46e3b03046d6b05d7ad90cd51aa6293);
+        
+    
+            var feature_group_0a89babf58353b83f1ae2f390b64756b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_d63f2e110e4d14fd9adcc4376a63f902 = L.marker(
+                [10.991, -74.789],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_d925b064268095ec667eb12ea3c2756b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_01b1b6d43041dd8fe894191e58d479a4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c2977ec31f7a244f5dde8208b4129244 = $(`<div id="html_c2977ec31f7a244f5dde8208b4129244" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha Sintética El Campito", <br> <strong>barrio: </strong> "El Campito" <br>           <a href = 'https://github.com/juarturito18/First-app-with-python' target = '_blank'>Reserva aqui </a></div>`)[0];
+                popup_01b1b6d43041dd8fe894191e58d479a4.setContent(html_c2977ec31f7a244f5dde8208b4129244);
+            
+        
+
+        marker_d63f2e110e4d14fd9adcc4376a63f902.bindPopup(popup_01b1b6d43041dd8fe894191e58d479a4)
+        ;
+
+        
+    
+    
+            marker_d63f2e110e4d14fd9adcc4376a63f902.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Sintética
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d63f2e110e4d14fd9adcc4376a63f902.setIcon(icon_d925b064268095ec667eb12ea3c2756b);
+            
+    
+            var marker_00bab9fdc2c952e3ba0cba4821f55fef = L.marker(
+                [10.968, -74.781],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_1fed2066b42f95182836983f060e6418 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_95942a2389c54ce15dc5562413ee50c3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7ae6cc362cafdf5a0b95cb3dfb21ddfb = $(`<div id="html_7ae6cc362cafdf5a0b95cb3dfb21ddfb" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha de Fútbol San Isidro", <br> <strong>barrio: </strong> "San Isidro" <br>           <a href = 'https://github.com/juarturito18/First-app-with-python' target = '_blank'>Reserva aqui </a></div>`)[0];
+                popup_95942a2389c54ce15dc5562413ee50c3.setContent(html_7ae6cc362cafdf5a0b95cb3dfb21ddfb);
+            
+        
+
+        marker_00bab9fdc2c952e3ba0cba4821f55fef.bindPopup(popup_95942a2389c54ce15dc5562413ee50c3)
+        ;
+
+        
+    
+    
+            marker_00bab9fdc2c952e3ba0cba4821f55fef.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_00bab9fdc2c952e3ba0cba4821f55fef.setIcon(icon_1fed2066b42f95182836983f060e6418);
+            
+    
+            var marker_78cab2567fa9583efdccda80e9ad6c81 = L.marker(
+                [10.987, -74.773],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_453ece92ccbcdcacfeae7f861a511be1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1fd12c559d387e44952115f3daf9f19e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6865ad4d805da9c7312da530d430e736 = $(`<div id="html_6865ad4d805da9c7312da530d430e736" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha Múltiple Villa Blanca", <br> <strong>barrio: </strong> "Villa Blanca" <br>           <a href = 'https://github.com/juarturito18/First-app-with-python' target = '_blank'>Reserva aqui </a></div>`)[0];
+                popup_1fd12c559d387e44952115f3daf9f19e.setContent(html_6865ad4d805da9c7312da530d430e736);
+            
+        
+
+        marker_78cab2567fa9583efdccda80e9ad6c81.bindPopup(popup_1fd12c559d387e44952115f3daf9f19e)
+        ;
+
+        
+    
+    
+            marker_78cab2567fa9583efdccda80e9ad6c81.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Múltiple
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_78cab2567fa9583efdccda80e9ad6c81.setIcon(icon_453ece92ccbcdcacfeae7f861a511be1);
+            
+    
+            var marker_41dcbf96f7a1b3cbe15742332a1e2efe = L.marker(
+                [10.985, -74.778],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_5e0618af35ae16773cb9e5e1c3a9a9c3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5da19b7053c94da88642bd0d78d81b4e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9c2e5ad5556bd9d1f2809739495fe8ae = $(`<div id="html_9c2e5ad5556bd9d1f2809739495fe8ae" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha de Microfútbol Las Palmas", <br> <strong>barrio: </strong> "Las Palmas" <br>           <a href = 'https://github.com/juarturito18/First-app-with-python' target = '_blank'>Reserva aqui </a></div>`)[0];
+                popup_5da19b7053c94da88642bd0d78d81b4e.setContent(html_9c2e5ad5556bd9d1f2809739495fe8ae);
+            
+        
+
+        marker_41dcbf96f7a1b3cbe15742332a1e2efe.bindPopup(popup_5da19b7053c94da88642bd0d78d81b4e)
+        ;
+
+        
+    
+    
+            marker_41dcbf96f7a1b3cbe15742332a1e2efe.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Microfútbol
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_41dcbf96f7a1b3cbe15742332a1e2efe.setIcon(icon_5e0618af35ae16773cb9e5e1c3a9a9c3);
+            
+    
+            var marker_b9f1edec0203221e180036fb0a727fd6 = L.marker(
+                [10.97, -74.8],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_e848c0c1d9c3d05f876a70b5afb37a78 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9e01d8d43b0c39857673fc0d349d53f7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4ac602dd059c9c030c481fb3f64b1a52 = $(`<div id="html_4ac602dd059c9c030c481fb3f64b1a52" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha Sintética Lipaya", <br> <strong>barrio: </strong> "Evaristo Sourdis" <br>           La cancha se encuentra ocupada</div>`)[0];
+                popup_9e01d8d43b0c39857673fc0d349d53f7.setContent(html_4ac602dd059c9c030c481fb3f64b1a52);
+            
+        
+
+        marker_b9f1edec0203221e180036fb0a727fd6.bindPopup(popup_9e01d8d43b0c39857673fc0d349d53f7)
+        ;
+
+        
+    
+    
+            marker_b9f1edec0203221e180036fb0a727fd6.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Sintética
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b9f1edec0203221e180036fb0a727fd6.setIcon(icon_e848c0c1d9c3d05f876a70b5afb37a78);
+            
+    
+            var marker_5d45c4a772c408b6350e48bb09aefe0a = L.marker(
+                [10.965, -74.805],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_e3e30573fabcc3c736391d0a3ce6a03b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2f3a7503f957926e5bd455a3182d17f5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_97f9050b0829cd9e69122191835535d4 = $(`<div id="html_97f9050b0829cd9e69122191835535d4" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha Múltiple San Carlos Borromeo", <br> <strong>barrio: </strong> "Los Olivos II" <br>           La cancha se encuentra ocupada</div>`)[0];
+                popup_2f3a7503f957926e5bd455a3182d17f5.setContent(html_97f9050b0829cd9e69122191835535d4);
+            
+        
+
+        marker_5d45c4a772c408b6350e48bb09aefe0a.bindPopup(popup_2f3a7503f957926e5bd455a3182d17f5)
+        ;
+
+        
+    
+    
+            marker_5d45c4a772c408b6350e48bb09aefe0a.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Múltiple
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5d45c4a772c408b6350e48bb09aefe0a.setIcon(icon_e3e30573fabcc3c736391d0a3ce6a03b);
+            
+    
+            var marker_bc73c82a491c11cdd32aacd6f2b19c7a = L.marker(
+                [10.973, -74.775],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_d811f411699d69b21f863d27a1ee2416 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_33f6b23baea11a3fc35b5ee3e4181ad8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_395763541ba91cf666adfcd8e1b36da2 = $(`<div id="html_395763541ba91cf666adfcd8e1b36da2" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha de Fútbol Parque Universal", <br> <strong>barrio: </strong> "Chiquinquirá" <br>           La cancha se encuentra ocupada</div>`)[0];
+                popup_33f6b23baea11a3fc35b5ee3e4181ad8.setContent(html_395763541ba91cf666adfcd8e1b36da2);
+            
+        
+
+        marker_bc73c82a491c11cdd32aacd6f2b19c7a.bindPopup(popup_33f6b23baea11a3fc35b5ee3e4181ad8)
+        ;
+
+        
+    
+    
+            marker_bc73c82a491c11cdd32aacd6f2b19c7a.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bc73c82a491c11cdd32aacd6f2b19c7a.setIcon(icon_d811f411699d69b21f863d27a1ee2416);
+            
+    
+            var marker_b160ccddf7b37222d22e3e3a3aeae790 = L.marker(
+                [10.98, -74.79],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_bcdfeb6301a54a855fae3cd851048625 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9a107834f33011225402e22b9b6fcf26 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_77790eb4fb6e951430e13ab32249e537 = $(`<div id="html_77790eb4fb6e951430e13ab32249e537" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha de Microfútbol Parque El Carmen", <br> <strong>barrio: </strong> "El Carmen" <br>           La cancha se encuentra ocupada</div>`)[0];
+                popup_9a107834f33011225402e22b9b6fcf26.setContent(html_77790eb4fb6e951430e13ab32249e537);
+            
+        
+
+        marker_b160ccddf7b37222d22e3e3a3aeae790.bindPopup(popup_9a107834f33011225402e22b9b6fcf26)
+        ;
+
+        
+    
+    
+            marker_b160ccddf7b37222d22e3e3a3aeae790.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Microfútbol
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b160ccddf7b37222d22e3e3a3aeae790.setIcon(icon_bcdfeb6301a54a855fae3cd851048625);
+            
+    
+            var marker_6e29a1f04b261d1889dc453d4a6f27e1 = L.marker(
+                [10.9875, -74.788],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_9fe4bc605257c514cac74a9274b9871a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e7ef27625c1140504303bdb1fb9783e5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9dfc76ce4d5888e0ede9c5d16e7a44a0 = $(`<div id="html_9dfc76ce4d5888e0ede9c5d16e7a44a0" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha Sintética Brasileirao", <br> <strong>barrio: </strong> "Barrio Abajo" <br>           <a href = 'https://github.com/juarturito18/First-app-with-python' target = '_blank'>Reserva aqui </a></div>`)[0];
+                popup_e7ef27625c1140504303bdb1fb9783e5.setContent(html_9dfc76ce4d5888e0ede9c5d16e7a44a0);
+            
+        
+
+        marker_6e29a1f04b261d1889dc453d4a6f27e1.bindPopup(popup_e7ef27625c1140504303bdb1fb9783e5)
+        ;
+
+        
+    
+    
+            marker_6e29a1f04b261d1889dc453d4a6f27e1.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Sintética
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6e29a1f04b261d1889dc453d4a6f27e1.setIcon(icon_9fe4bc605257c514cac74a9274b9871a);
+            
+    
+            var marker_f805ea7bf7ff9e43bbb352ed9c11ffe6 = L.marker(
+                [10.9905, -74.7755],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_b6575bd1e27d378dab50d3ff336ef629 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_599cb47959f589376365c4d7accd1b00 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_62af72fa39e15f3fe72c51efe7e8f1df = $(`<div id="html_62af72fa39e15f3fe72c51efe7e8f1df" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha de Fútbol Parque Tivoli", <br> <strong>barrio: </strong> "El Tívoli" <br>           <a href = 'https://github.com/juarturito18/First-app-with-python' target = '_blank'>Reserva aqui </a></div>`)[0];
+                popup_599cb47959f589376365c4d7accd1b00.setContent(html_62af72fa39e15f3fe72c51efe7e8f1df);
+            
+        
+
+        marker_f805ea7bf7ff9e43bbb352ed9c11ffe6.bindPopup(popup_599cb47959f589376365c4d7accd1b00)
+        ;
+
+        
+    
+    
+            marker_f805ea7bf7ff9e43bbb352ed9c11ffe6.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f805ea7bf7ff9e43bbb352ed9c11ffe6.setIcon(icon_b6575bd1e27d378dab50d3ff336ef629);
+            
+    
+            var marker_de11b5c89416714dfad048e2a6698f6b = L.marker(
+                [10.9852, -74.7813],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_68fb9a346b0776467a82a6e06398a66d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a985dc2f9e9a400df7566c9808c82588 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ab48235967b479918e56d4ae779885d1 = $(`<div id="html_ab48235967b479918e56d4ae779885d1" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha Múltiple La 27", <br> <strong>barrio: </strong> "La Ceiba" <br>           La cancha se encuentra ocupada</div>`)[0];
+                popup_a985dc2f9e9a400df7566c9808c82588.setContent(html_ab48235967b479918e56d4ae779885d1);
+            
+        
+
+        marker_de11b5c89416714dfad048e2a6698f6b.bindPopup(popup_a985dc2f9e9a400df7566c9808c82588)
+        ;
+
+        
+    
+    
+            marker_de11b5c89416714dfad048e2a6698f6b.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Múltiple
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_de11b5c89416714dfad048e2a6698f6b.setIcon(icon_68fb9a346b0776467a82a6e06398a66d);
+            
+    
+            var marker_c09e2d6064f06ecb823dbae9ffd69b4f = L.marker(
+                [10.8896, -74.7811],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_8c79bca46a66ef5330a86558ad9ff695 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5ff0fb63f3f75a4c4ef48e3203ee633b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_820e81ceae73c203cdd7097a80153677 = $(`<div id="html_820e81ceae73c203cdd7097a80153677" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha de Fútbol Estadio Metropolitano", <br> <strong>barrio: </strong> "Ciudadela 20 de Julio" <br>           La cancha se encuentra ocupada</div>`)[0];
+                popup_5ff0fb63f3f75a4c4ef48e3203ee633b.setContent(html_820e81ceae73c203cdd7097a80153677);
+            
+        
+
+        marker_c09e2d6064f06ecb823dbae9ffd69b4f.bindPopup(popup_5ff0fb63f3f75a4c4ef48e3203ee633b)
+        ;
+
+        
+    
+    
+            marker_c09e2d6064f06ecb823dbae9ffd69b4f.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Grama Natural
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c09e2d6064f06ecb823dbae9ffd69b4f.setIcon(icon_8c79bca46a66ef5330a86558ad9ff695);
+            
+    
+            var marker_8b2efaf2fc0fe9edd57fb426a4eb5067 = L.marker(
+                [10.9932, -74.7889],
+                {
+}
+            ).addTo(feature_group_0a89babf58353b83f1ae2f390b64756b);
+        
+    
+            var icon_af7d7fa8a170994ae13e70b7640edf4c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "soccer-ball-o",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c04b2a18857d1a92cc18886fdd3ad06d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3b77d47b00abaa9eb53ed2302c67dc4b = $(`<div id="html_3b77d47b00abaa9eb53ed2302c67dc4b" style="width: 100.0%; height: 100.0%;"><strong>Cancha: </strong>"Cancha de Fútbol Estadio Romelio Martínez", <br> <strong>barrio: </strong> "El Prado" <br>           <a href = 'https://github.com/juarturito18/First-app-with-python' target = '_blank'>Reserva aqui </a></div>`)[0];
+                popup_c04b2a18857d1a92cc18886fdd3ad06d.setContent(html_3b77d47b00abaa9eb53ed2302c67dc4b);
+            
+        
+
+        marker_8b2efaf2fc0fe9edd57fb426a4eb5067.bindPopup(popup_c04b2a18857d1a92cc18886fdd3ad06d)
+        ;
+
+        
+    
+    
+            marker_8b2efaf2fc0fe9edd57fb426a4eb5067.bindTooltip(
+                `<div>
+                     <strong>Tipo de la cancha: </strong> Grama Natural
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8b2efaf2fc0fe9edd57fb426a4eb5067.setIcon(icon_af7d7fa8a170994ae13e70b7640edf4c);
+            
+    
+            feature_group_0a89babf58353b83f1ae2f390b64756b.addTo(map_c46e3b03046d6b05d7ad90cd51aa6293);
+        
+    
+            var layer_control_281dba776bb2d4802aa205b9bc43b82a_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_0772a07c0660c7e34a57934e432c0a48,
+                    "Openstreetmap" : tile_layer_d60be921136e2a63858ee6bdec0d98c6,
+                },
+                overlays :  {
+                    "markers" : feature_group_0a89babf58353b83f1ae2f390b64756b,
+                },
+            };
+            let layer_control_281dba776bb2d4802aa205b9bc43b82a = L.control.layers(
+                layer_control_281dba776bb2d4802aa205b9bc43b82a_layers.base_layers,
+                layer_control_281dba776bb2d4802aa205b9bc43b82a_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_c46e3b03046d6b05d7ad90cd51aa6293);
+
+        
+</script>
+</html>

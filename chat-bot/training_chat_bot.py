@@ -11,7 +11,7 @@ from tensorflow.keras.optimizers import SGD
 
 lemmatizer = WordNetLemmatizer()
 
-intents = json.loads(open("respuestas.json").read())
+intents = json.loads(open(r"info\respuestas.json").read())
 
 words = []
 clases = []
