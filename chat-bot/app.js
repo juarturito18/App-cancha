@@ -38,7 +38,7 @@ class Chatbox {
 
     onSendButton(chatbox) {
         var textField = chatbox.querySelector('input');
-        let text1 = textField.value
+        let text1 = textField.value.trim(); // Añadir .trim() para eliminar espacios en blanco
         if (text1 === "") {
             return;
         }
@@ -46,7 +46,8 @@ class Chatbox {
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        fetch('http://127.0.0.1:5000/predict', {
+        // Cambiar la URL a /chat
+        fetch('/chat', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -56,6 +57,7 @@ class Chatbox {
           })
           .then(r => r.json())
           .then(r => {
+            // Esperar r.answer en lugar de r.response (ajustaremos app.py)
             let msg2 = { name: "Sam", message: r.answer };
             this.messages.push(msg2);
             this.updateChatText(chatbox)
@@ -63,15 +65,19 @@ class Chatbox {
 
         }).catch((error) => {
             console.error('Error:', error);
-            this.updateChatText(chatbox)
-            textField.value = ''
+            // Mostrar un mensaje de error al usuario si la petición falla
+            let errMsg = { name: "Sam", message: "Lo siento, hubo un error al procesar tu mensaje." };
+            this.messages.push(errMsg);
+            this.updateChatText(chatbox);
+            textField.value = '';
           });
     }
 
     updateChatText(chatbox) {
         var html = '';
-        this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Sam")
+        // Iterar sobre los mensajes y construir el HTML
+        this.messages.forEach(function(item, index) { // Cambiado a forEach normal para mostrar en orden cronológico
+             if (item.name === "Sam")
             {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }
@@ -83,6 +89,8 @@ class Chatbox {
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
+         // Desplazar hacia abajo para ver el último mensaje
+        chatmessage.scrollTop = chatmessage.scrollHeight;
     }
 }
 

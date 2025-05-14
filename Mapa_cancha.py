@@ -1,6 +1,6 @@
 import folium as fl
 import pandas as pd
-import random as rd
+
 
 mapa = fl.Map(location=[10.96854, -74.78132], zoom_start = 14, tiles = "CartoDB Positron")
 
@@ -13,20 +13,21 @@ barrio = list(data["Barrio"])
 tipo = list(data["Tipo"])
 lat = list(data["Latitud"])
 lon = list(data["Longitud"])
+dis = list(data["Disponibilidad"])
 
 
 color = []
-for i in range(0, len(name)):
-    if rd.choice([True, False]):
+for i in dis:
+    if i:
         color.append("green")
     else:
         color.append("red")
 
 marker = fl.FeatureGroup(name="markers").add_to(mapa)
 
-for i,(lt, ln, nm, tp, br) in enumerate(zip(lat, lon, name, tipo, barrio)):
+for i,(lt, ln, nm, tp, br, dis) in enumerate(zip(lat, lon, name, tipo, barrio, dis)):
     if color[i] == "green":
-        message = "<a href = 'https://github.com/juarturito18/First-app-with-python' target = '_blank'>Reserva aqui </a>"
+        message = "<a href = 'Reserva/reserva.html' target = '_blank'>Reserva aqui </a>"
     else:
         message = "La cancha se encuentra ocupada"
     fl.Marker(

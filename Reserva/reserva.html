@@ -1,33 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Reservar Cancha</title>
-    <link rel="stylesheet" href="style_reserva.css">
+  <meta charset="UTF-8">
+  <title>Reservar Cancha</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="style_reserva.css">
 </head>
 <body>
-    <div class="form-container">
-        <h1>Reservar</h1>
- <form action="/reservar" method="POST">
-    <label>Usuario:</label>
-    <input type="text" name="usuario" required><br><br>
+  <div class="form-container">
+    <h1>Reservar</h1>
+    <form>
+      <label>Nombre:</label>
+      <input type="text" id="nombre" required><br><br>
 
-    <label>Cancha:</label>
-    <select name="cancha" required>
-        {% for nombre in canchas %}
-            <option value="{{ nombre }}">{{ nombre }}</option>
-        {% endfor %}
-    </select><br><br>
+      <label>Email:</label>
+      <input type="email" id="email" required><br><br>
 
-    <label>Fecha:</label>
-    <input type="date" name="fecha" required><br><br>
+      <label>Cancha:</label>
+      <select id="cancha" required>
+        <option value="" disabled selected>Seleccione la cancha</option>
+        <option value="Cancha Sintética El Campito">Cancha Sintética El Campito</option>
+        <option value="Cancha de Fútbol San Isidro">Cancha de Fútbol San Isidro</option>
+        <option value="Cancha de Microfútbol Las Palmas">Cancha de Microfútbol Las Palmas</option>
+        <option value="Cancha de Microfútbol Parque El Carmen">Cancha de Microfútbol Parque El Carmen</option>
+        <option value="Cancha Sintética Brasileirao">Cancha Sintética Brasileirao</option>
+        <option value="Cancha de Fútbol Estadio Metropolitano">Cancha de Fútbol Estadio Metropolitano</option>
+      </select><br><br>
 
-    <label>Hora:</label>
-    <input type="time" name="hora" required><br><br>
+      <label>Fecha:</label>
+      <input type="date" id="fecha" required><br><br>
 
-    <button type="submit">Reservar</button>
-</form>
+      <label>Hora:</label>
+      <input type="time" id="hora" required><br><br>
 
-    </div>
+      <button type="button" onclick="generarPDF()">Reservar</button>
+    </form>
+  </div>
+
+  <script>
+    async function generarPDF() {
+      // Cargar imagen de firma predeterminada
+      const firmaBase64 = await cargarFirma("Juan_Sabino_cocosign.png");
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Obtener datos del formulario
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const cancha = document.getElementById("cancha").value;
+      const fecha = document.getElementById("fecha").value;
+      const hora = document.getElementById("hora").value;
+      const fechaHora = new Date().toLocaleString();
+
+      // Encabezado
+      doc.setFontSize(18);
+      doc.setFont("Arial", "bolditalic");
+      doc.text(`Confirmación de Reserva – ${cancha}`, 30, 30);
+
+      doc.setFontSize(14);
+      doc.setFont("Arial", "normal");
+      doc.text(`Barranquilla, Atlántico, Colombia`, 10, 50);
+      doc.text(`Fecha de emisión: ${fechaHora}`, 10, 60);
+
+      const cuerpo = [
+        `A quien corresponda,`,
+        ``,
+        `Por medio de la presente, dejamos constancia de que el señor(a) "${nombre}",`,
+        `identificado con el correo electrónico "${email}", ha realizado una`,
+        `reserva formal de la instalación deportiva conocida como "${cancha}".`,
+        ``,
+        `Dicha reserva otorga el derecho de uso exclusivo de la cancha por un período`,
+        `de una hora, comenzando puntualmente a las "${hora}" horas del día "${fecha}".`,
+        `Durante este tiempo, la cancha permanecerá cerrada al público general y se`,
+        `considerará como un espacio de uso privado del solicitante.`,
+        ``,
+        `Esta autorización se emite bajo la normativa de reservas de la institución, y`,
+        `deberá ser presentada en caso de requerirse validación por parte del personal encargado.`,
+        ``,
+        `Agradecemos al usuario por utilizar nuestros servicios y recordamos que es`,
+        `responsabilidad del mismo hacer uso adecuado de las instalaciones, mantener`,
+        `la limpieza del espacio y respetar el horario asignado.`,
+        ``,
+      ];
+
+      let y = 70;
+      cuerpo.forEach(linea => {
+        doc.text(linea, 10, y);
+        y += 10;
+      });
+
+      doc.text("Atentamente,", 10, y + 10);
+      doc.text("Administración de Reservas", 10, y + 20);
+      doc.text("Centro Deportivo la pateada", 10, y + 30);
+
+      // Insertar firma (firma predeterminada)
+      doc.addImage(firmaBase64, "PNG", 130, y + 5, 60, 30);
+
+      doc.save("reserva_con_firma.pdf");
+    }
+
+    // Cargar imagen local como base64
+    async function cargarFirma(path) {
+      const response = await fetch(path);
+      const blob = await response.blob();
+      return await convertirImagenABase64(blob);
+    }
+
+    // Convertir a base64
+    function convertirImagenABase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
 </body>
 </html>
