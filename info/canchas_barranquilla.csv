@@ -1,5 +1,5 @@
 Nombre,Barrio,Tipo,Latitud,Longitud,3-4pm,4-5pm,5-6pm,6-7pm,7-8pm,8-9pm
-Cancha Sintética El Campito,El Campito,Sintética,10.991,-74.789,True,False,True,False,True,False
+Cancha Sintética El Campito,El Campito,Sintética,10.991,-74.789,False,False,True,False,True,False
 Cancha de Fútbol San Isidro,San Isidro,Arena,10.968,-74.781,False,True,False,True,True,False
 Cancha Múltiple Villa Blanca,Villa Blanca,Múltiple,10.987,-74.773,True,True,False,False,True,True
 Cancha de Microfútbol Las Palmas,Las Palmas,Microfútbol,10.985,-74.778,True,True,True,True,False,True

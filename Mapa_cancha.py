@@ -28,7 +28,7 @@ for i in range(3,9):
 
     for r,(lt, ln, nm, tp, br, dis) in enumerate(zip(lat, lon, name, tipo, barrio, dis)):
         if color[r] == "green":
-            message = "<a href = 'Reserva/reserva.html' target = '_blank'>Reserva aqui </a>"
+            message = "<a href = 'http://127.0.0.1:8000/reservar/reserva.html' target = '_blank'>Reserva aqui </a>"
         else:
             message = "La cancha se encuentra ocupada"
         fl.Marker(
