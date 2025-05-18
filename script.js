@@ -1,5 +1,7 @@
-function cambiarMapa(numeroMapa) {
+function cambiarMapa(num1, num2) {
   const iframe = document.getElementById('iframeMapa');
-  iframe.src = `Canchas sinteticas${numeroMapa}.html`;
+  const newSrc = `canchas-sinteticas${num1}-${num2}PM.html`;
+  console.log('Attempting to load:', newSrc); // Check browser console
+  iframe.src = newSrc;
 }
 

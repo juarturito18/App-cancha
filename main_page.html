@@ -21,21 +21,26 @@
   <main class="container">
     <h2>Selecciona el mapa según el horario deseado</h2>
     <div style="margin-bottom: 20px;">
-      <button onclick="cambiarMapa(1)">3 - 4 PM</button>
-      <button onclick="cambiarMapa(2)">4 - 5 PM</button>
-      <button onclick="cambiarMapa(3)">5 - 6 PM</button>
-      <button onclick="cambiarMapa(4)">6 - 7 PM </button>
-      <button onclick="cambiarMapa(5)">7 - 8 PM</button>
-      <button onclick="cambiarMapa(6)">8 - 9 PM</button>
+      <button onclick="cambiarMapa(3, 4)">3 - 4 PM</button>
+      <button onclick="cambiarMapa(4, 5)">4 - 5 PM</button>
+      <button onclick="cambiarMapa(5, 6)">5 - 6 PM</button>
+      <button onclick="cambiarMapa(6, 7)">6 - 7 PM </button>
+      <button onclick="cambiarMapa(7, 8)">7 - 8 PM</button>
+      <button onclick="cambiarMapa(8 , 9)">8 - 9 PM</button>
     </div>
-    <iframe id="iframeMapa" src="Canchas sinteticas1.html" width="100%" height="600px" style="border:1px solid #ccc;"></iframe>
+    <iframe id="iframeMapa" src="canchas-sinteticas3-4PM.html" width="100%" height="600px"></iframe>
   </main>
   
     <section class="container">
     <h2>Reservar cancha</h2>
     <p>¿Ya sabes en qué cancha quieres jugar? ¡Reserva ahora mismo con un solo clic!</p>
-    <button class = "btn-reservar" onclick="location.href='http://127.0.0.1:8000/reservar/reserva.html'">Ir a Reservar</button>
+    <button  onclick="location.href='http://127.0.0.1:8000/reservar/reserva.html'">Ir a Reservar</button>
   </section>
+    <footer role="contentinfo" aria-label="Pie de página">
+    <div class="container">
+      <p>&copy; 2025 La Pateada - Todos los derechos reservados</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
