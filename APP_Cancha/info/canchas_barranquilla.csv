@@ -1,0 +1,14 @@
+Nombre,Barrio,Tipo,Latitud,Longitud,3-4pm,4-5pm,5-6pm,6-7pm,7-8pm,8-9pm
+Cancha Sintética El Campito,El Campito,Sintética,10.991,-74.789,False,False,True,False,True,False
+Cancha de Fútbol San Isidro,San Isidro,Arena,10.968,-74.781,False,True,False,True,True,False
+Cancha Múltiple Villa Blanca,Villa Blanca,Múltiple,10.987,-74.773,True,True,False,False,False,True
+Cancha de Microfútbol Las Palmas,Las Palmas,Microfútbol,10.985,-74.778,True,True,True,True,False,True
+Cancha Sintética Lipaya,Evaristo Sourdis,Sintética,10.97,-74.8,True,False,False,True,False,True
+Cancha Múltiple San Carlos Borromeo,Los Olivos II,Múltiple,10.965,-74.805,True,False,False,True,True,False
+Cancha de Fútbol Parque Universal,Chiquinquirá,Arena,10.973,-74.775,True,False,False,True,False,True
+Cancha de Microfútbol Parque El Carmen,El Carmen,Microfútbol,10.98,-74.79,True,True,False,True,False,True
+Cancha Sintética Brasileirao,Barrio Abajo,Sintética,10.9875,-74.788,True,False,False,False,False,False
+Cancha de Fútbol Parque Tivoli,El Tívoli,Arena,10.9905,-74.7755,False,False,True,False,True,True
+Cancha Múltiple La 27,La Ceiba,Múltiple,10.9852,-74.7813,False,True,False,True,False,False
+Cancha de Fútbol Estadio Metropolitano,Ciudadela 20 de Julio,Grama Natural,10.8896,-74.7811,True,False,False,True,False,True
+Cancha de Fútbol Estadio Romelio Martínez,El Prado,Grama Natural,10.9932,-74.7889,False,True,False,False,True,False

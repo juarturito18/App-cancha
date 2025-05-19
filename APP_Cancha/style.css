@@ -1,0 +1,94 @@
+/* Fuente general y reset básico */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #d4fcd4, #f0fff0); /* fondo suave verde-blanco */
+  color: #1b5e20;
+}
+
+/* Encabezado principal */
+header {
+  background-color: #2e7d32;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  margin: 0;
+}
+
+/* Mensaje de bienvenida */
+.intro {
+  background-color: white;
+  margin: 20px auto;
+  max-width: 900px;
+  padding: 15px 25px;
+  border-left: 6px solid #66bb6a;
+  border-radius: 10px;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor principal */
+.container {
+  background-color: white;
+  max-width: 960px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 128, 0, 0.1);
+}
+
+h2 {
+  color: #1b5e20;
+  margin-bottom: 20px;
+}
+
+/* Botones de mapa */
+button {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  margin: 5px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2e7d32;
+}
+
+/* Mapa */
+iframe {
+  border: 2px solid #66bb6a;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+/* Responsividad para móviles */
+@media screen and (max-width: 768px) {
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .container {
+    padding: 20px 15px;
+  }
+
+  iframe {
+    height: 400px;
+  }
+}
+
+
+
+
+
+
