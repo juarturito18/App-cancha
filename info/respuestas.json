@@ -1,0 +1,61 @@
+{
+    "intents": [
+        {
+            "tag": "saludo",
+            "patterns": ["hola", "como estas", "que mas de nuevo", "saludos"],
+            "responses": ["Buenas tardes", "¿Cómo se encuentra el día de hoy?", "Muy buenas, ¿en qué puedo ayudarle hoy?"]
+        },
+        {
+            "tag": "reservar",
+            "patterns": [
+                "necesito reservar una cancha", 
+                "No entiendo el proceso para reservar una cancha", 
+                "no entiendo como apartar una cancha",
+                "quiero hacer una reserva"
+            ],
+            "responses": [
+                "¡Claro! Puedes reservar una cancha haciendo clic aquí: <a href='reservar.html' target='_blank'>Ir a reservar</a>",
+                "Haz clic en este enlace para iniciar tu reserva: <a href='reservar.html' target='_blank'>Reservar ahora</a>"
+            ]
+        },
+        {
+            "tag": "cancha_ocupada",
+            "patterns": [
+                "la cancha que quiero está ocupada", 
+                "no hay disponibilidad en esa cancha", 
+                "esa cancha está llena"
+            ],
+            "responses": [
+                "Lo siento, esa cancha no está disponible. ¿Deseas que te muestre canchas similares cercanas?",
+                "Esa cancha está ocupada. Puedo ayudarte a encontrar otra cancha en el mismo barrio. ¿Te parece bien?"
+            ]
+        },
+        {
+            "tag": "precio",
+            "patterns": [
+                "cuánto cuesta la cancha", 
+                "qué precio tiene por hora", 
+                "cuál es el valor de la cancha", 
+                "tarifa"
+            ],
+            "responses": [
+                "El costo por hora es de $30.000 COP.",
+                "Cada reserva tiene un valor de 30 mil pesos por hora."
+            ]
+        },
+        {
+            "tag": "hora_especifica",
+            "patterns": [
+                "quiero jugar a las 5", 
+                "hay canchas a las 6pm", 
+                "tienen disponibilidad a las 4 de la tarde", 
+                "puedo reservar a las 7"
+            ],
+            "responses": [
+                "Estoy verificando la disponibilidad para esa hora...",
+                "Un momento, ya reviso si hay canchas libres en ese horario.",
+                "Déjame buscar una cancha disponible a esa hora para ti."
+            ]
+        }
+    ]
+}

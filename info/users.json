@@ -1,0 +1,16 @@
+{
+  "juarturito18@gmail.com": {
+    "email": "juarturito18@gmail.com",
+    "first_name": "Juan",
+    "last_name": "Sabino ",
+    "age": 18,
+    "hashed_password": "$2b$12$KosOsh38p9wSC2xyHoPn8eFTUixvvo1LHAqJQaVhNBO7tgJ2VpeBK"
+  },
+  "zharick@gmail.com": {
+    "email": "zharick@gmail.com",
+    "first_name": "zharick",
+    "last_name": "Caama\u00f1o",
+    "age": 18,
+    "hashed_password": "$2b$12$WbnzrYoTf/3ZsEq9Lh7/s.5YFZIdYYn89oDFHVo6Yjqu7KPyNQUPG"
+  }
+}

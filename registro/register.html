@@ -1,0 +1,33 @@
+<!-- registro/register.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario</title>
+  <!-- Enlace relativo al CSS en /auth/style_reserva.css -->
+  <link rel="stylesheet" href="style_reserva.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Crear Cuenta</h2>
+    <form id="registerForm">
+      <input type="text" id="first_name" placeholder="Nombre" required><br>
+      <input type="text" id="last_name" placeholder="Apellido" required><br>
+      <input type="email" id="email" placeholder="Correo Electrónico" required><br>
+      <input type="number" id="age" placeholder="Edad" required min="0"><br>
+      <input type="password" id="password" placeholder="Contraseña" required><br>
+      <button type="submit">Registrar</button>
+    </form>
+    <p id="response"></p>
+    <div class="login-link">
+      ¿Ya tienes cuenta? 
+      <!-- Enlace absoluto a /auth/login.html -->
+      <a href="http://127.0.0.1:8000/auth/login.html">Inicia sesión aquí</a>
+    </div>
+  </div>
+
+  <!-- Cargar el script de registro (ubicado en /auth/register.js) -->
+  <script src="register.js"></script>
+</body>
+</html>

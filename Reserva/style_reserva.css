@@ -1,0 +1,88 @@
+/* Estilo armonizado con la página principal */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  background: linear-gradient(to right, #d4fcd4, #f0fff0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1b5e20;
+}
+
+.form-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 128, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #1b5e20;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 12px 0 6px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  background-color: #f1f8e9;
+  font-size: 14px;
+  color: #1b5e20;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #66bb6a;
+  box-shadow: 0 0 4px rgba(102, 187, 106, 0.6);
+}
+
+button {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #2e7d32;
+}
+
+/* Responsivo para móviles */
+@media screen and (max-width: 768px) {
+  .form-container {
+    padding: 25px 20px;
+    width: 90%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
