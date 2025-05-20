@@ -1,0 +1,14 @@
+{
+  "juan": {
+    "username": "juan",
+    "full_name": "Juan Sabino",
+    "email": "juan_sabi@gmail.com",
+    "password": "$2a$12$5IGVt0yeQ6OS1BhpA0Z3D.GHoUtEe8rsLGHyK7tbG87hj2bBOt4uy"
+  },
+  "jorge": {
+    "username": "jorge",
+    "full_name": "Jorge Sabino",
+    "email": "jorgeandesab@gmail.com.com",
+    "password": "$2a$12$iXjvJangEP3qo0cvi5M2QuyRCSR2DIGh1gWd7dec9igiFmA0roHK."
+  }
+}

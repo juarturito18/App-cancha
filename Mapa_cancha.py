@@ -1,7 +1,7 @@
 import folium as fl
 import pandas as pd
 
-data = pd.read_csv("info/canchas_barranquilla.csv", skipinitialspace=True)
+data = pd.read_csv(r"C:\Users\Usuario\Documents\APP_Cancha\info\canchas_barranquilla.csv", skipinitialspace=True)
 
 
 name = list(data["Nombre"])
