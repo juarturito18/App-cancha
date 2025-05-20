@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-<head >
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>La Pateada</title>
-  
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <header>
     <h1>Bienvenido a La Pateada</h1>
+    <nav>
+      <a href="http://127.0.0.1:8000/auth/login.html">Login</a> |
+      <a href="http://127.0.0.1:8000/auth/register.html">Registro</a>
+    </nav>
   </header>
 
   <div class="intro">
@@ -32,12 +35,13 @@
     <p class = "intro"><img src="championship (2).png" alt="" width="5%"> Ocupado <img src="championship (1).png" alt="" width="5%"> Disponible   </p>
   </main>
   
-    <section class="container">
+  <section class="container">
     <h2>Reservar cancha</h2>
     <p>¿Ya sabes en qué cancha quieres jugar? ¡Reserva ahora mismo con un solo clic!</p>
-    <button  onclick="location.href='http://127.0.0.1:8000/reservar/reserva.html'">Ir a Reservar</button>
+    <button onclick="location.href='/reservar/reserva.html'">Ir a Reservar</button>
   </section>
-    <footer role="contentinfo" aria-label="Pie de página">
+  
+  <footer role="contentinfo" aria-label="Pie de página">
     <div class="container">
       <p>&copy; 2025 La Pateada - Todos los derechos reservados</p>
     </div>

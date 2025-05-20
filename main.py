@@ -1,20 +1,25 @@
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import pandas as pd
-from fastapi.staticfiles import StaticFiles
+from router.auth import router as auth
 
 app = FastAPI()
 
-app.mount("/reservar", StaticFiles(directory="Reserva", html=True), name="frontend")
-
-# Permitir acceso desde frontend local (ajusta si lo necesitas)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Montar frontend estático
+app.mount("/reservar", StaticFiles(directory="Reserva", html=True), name="frontend")
+app.mount("/auth", StaticFiles(directory="registro", html=True), name="auth")
+
+# Incluir rutas de auth
+app.include_router(auth)
 
 CSV_PATH = "info/canchas_barranquilla.csv"
 
@@ -28,10 +33,9 @@ hora_column_map = {
 }
 
 @app.get("/disponibles")
-def obtener_canchas_disponibles(hora: str = Query(..., pattern="^1[5-9]:00|20:00$")):
+def disponibles(hora: str = Query(..., pattern="^1[5-9]:00|20:00$")):
     if hora not in hora_column_map:
         raise HTTPException(status_code=400, detail="Hora inválida")
-
     try:
         df = pd.read_csv(CSV_PATH)
         columna = hora_column_map[hora]
@@ -45,7 +49,7 @@ class ReservaRequest(BaseModel):
     hora: str
 
 @app.post("/reservar")
-def reservar_cancha(data: ReservaRequest):
+def reservar(data: ReservaRequest):
     cancha = data.cancha
     hora = data.hora
 
@@ -55,19 +59,14 @@ def reservar_cancha(data: ReservaRequest):
     try:
         df = pd.read_csv(CSV_PATH)
         columna = hora_column_map[hora]
-
-        # Validar que esté disponible
         row = df[df["Nombre"] == cancha]
         if row.empty:
             raise HTTPException(status_code=404, detail="Cancha no encontrada")
-
         if not row.iloc[0][columna]:
             raise HTTPException(status_code=400, detail="Cancha ya reservada para esa hora")
 
-        # Actualizar disponibilidad
         df.loc[df["Nombre"] == cancha, columna] = False
         df.to_csv(CSV_PATH, index=False)
         return {"mensaje": "Reserva realizada correctamente"}
-
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al procesar reserva: {e}")

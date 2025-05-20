@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <link rel="stylesheet" href="style_reserva.css">
+</head>
+<body>
+  <h2>Registro</h2>
+  <form id="registerForm">
+    <input type="text" id="first_name" placeholder="Nombre" required><br><br>
+    <input type="text" id="last_name" placeholder="Apellido" required><br><br>
+    <input type="email" id="email" placeholder="Email" required><br><br>
+    <input type="number" id="age" placeholder="Edad" required min="18"><br><br>
+    <input type="password" id="password" placeholder="Contraseña (mínimo 8 caracteres)" required><br><br>
+    <button type="submit">Registrar</button>
+  </form>
+
+  <p id="response" style="color:red;"></p>
+
+  <script>
+    async function register() {
+      const fn = document.getElementById('first_name').value;
+      const ln = document.getElementById('last_name').value;
+      const e = document.getElementById('email').value;
+      const age = parseInt(document.getElementById('age').value, 10);
+      const p = document.getElementById('password').value;
+
+      if (p.length < 8) {
+        document.getElementById('response').innerText = 'La contraseña debe tener al menos 8 caracteres';
+        return;
+      }
+      if (age < 18) {
+        document.getElementById('response').innerText = 'Debes ser mayor de 18 años para registrarte';
+        return;
+      }
+
+      const formData = new URLSearchParams();
+      formData.append('first_name', fn);
+      formData.append('last_name', ln);
+      formData.append('email', e);
+      formData.append('age', age);
+      formData.append('password', p);
+
+      const res = await fetch('http://localhost:8000/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData
+      });
+      const json = await res.json();
+      document.getElementById('response').innerText = json.message || json.detail;
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', e => { e.preventDefault(); register(); });
+  </script>
+</body>
+</html>

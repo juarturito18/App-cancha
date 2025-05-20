@@ -10,5 +10,11 @@
     "full_name": "Jorge Sabino",
     "email": "jorgeandesab@gmail.com.com",
     "password": "$2a$12$iXjvJangEP3qo0cvi5M2QuyRCSR2DIGh1gWd7dec9igiFmA0roHK."
+  },
+  "Silvana": {
+    "username": "Silvana",
+    "full_name": "Silvana",
+    "email": "",
+    "password": "$2b$12$5buCE3//73cTB6ubAst9Vubwie9YKUPYP0DSxXIdyY5vMUfbaVbTq"
   }
 }
