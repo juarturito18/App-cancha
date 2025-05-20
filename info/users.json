@@ -1,20 +1,16 @@
 {
-  "juan": {
-    "username": "juan",
-    "full_name": "Juan Sabino",
-    "email": "juan_sabi@gmail.com",
-    "password": "$2a$12$5IGVt0yeQ6OS1BhpA0Z3D.GHoUtEe8rsLGHyK7tbG87hj2bBOt4uy"
+  "usuario1@example.com": {
+    "email": "usuario1@example.com",
+    "first_name": "Juan",
+    "last_name": "Perez",
+    "age": 30,
+    "hashed_password": "$2b$12$EIXb0sbm2d9N8sP2qgXyZ.eO8X.X.P0qJtQ9hS3L0XyZ.eO8X.X"
   },
-  "jorge": {
-    "username": "jorge",
-    "full_name": "Jorge Sabino",
-    "email": "jorgeandesab@gmail.com.com",
-    "password": "$2a$12$iXjvJangEP3qo0cvi5M2QuyRCSR2DIGh1gWd7dec9igiFmA0roHK."
-  },
-  "Silvana": {
-    "username": "Silvana",
-    "full_name": "Silvana",
-    "email": "",
-    "password": "$2b$12$5buCE3//73cTB6ubAst9Vubwie9YKUPYP0DSxXIdyY5vMUfbaVbTq"
+  "maria.gomez@example.com": {
+    "email": "maria.gomez@example.com",
+    "first_name": "Maria",
+    "last_name": "Gomez",
+    "age": 25,
+    "hashed_password": "$2b$12$anotherhashedpasswordexampleplaceholder123"
   }
 }

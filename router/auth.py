@@ -3,27 +3,30 @@ from pydantic import BaseModel, EmailStr, validator
 from jose import jwt, JWTError
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
+from typing import Optional
 
 # Configuración
-algoritmo = "HS256"
-access_token_time = 1  # minutos
-secret = "f3c26f15a5b7484570ad1bfbf9b08df15a9a9ffbd3b801cfbaee5ea2a1f3e142"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30  # Tiempo de expiración del token aumentado
+SECRET_KEY = "f3c26f15a5b7484570ad1bfbf9b08df15a9a9ffbd3b801cfbaee5ea2a1f3e142" # Mantén tu secret key
 
 # Rutas
 router = APIRouter()
 
-oauth2 = OAuth2PasswordBearer(tokenUrl="/login")
-crypt = CryptContext(schemes=["bcrypt"])
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login") # Asegúrate que tokenUrl coincida con tu endpoint de login en el router principal si es diferente
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# Modelos
-class RegisterModel(BaseModel):
+# Modelos Pydantic
+class UserBase(BaseModel):
+    email: EmailStr
     first_name: str
     last_name: str
-    email: EmailStr
     age: int
+
+class UserCreate(UserBase):
     password: str
 
     @validator('password')
@@ -38,99 +41,152 @@ class RegisterModel(BaseModel):
             raise ValueError('Debes ser mayor de 18 años para registrarte')
         return v
 
-class User(BaseModel):
-    username: str
+class UserInDB(UserBase):
+    hashed_password: str
+
+class TokenData(BaseModel):
+    email: Optional[str] = None
+
+class UserResponse(BaseModel):
+    email: EmailStr
     first_name: str
     last_name: str
-    email: EmailStr
     age: int
 
-# Funciones auxiliares
-USERS_PATH = Path(__file__).parent.parent / "data" / "users.json"
+# Funciones auxiliares para manejar users.json
+# Asumiendo que auth.py está en una carpeta (ej: 'router') y users.json en la raíz del proyecto.
+USERS_FILE_PATH = Path(__file__).resolve().parent.parent / "users.json"
 
+def load_users_db():
+    """Carga la base de datos de usuarios desde el archivo JSON."""
+    if not USERS_FILE_PATH.exists():
+        return {}
+    with open(USERS_FILE_PATH, 'r') as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return {}
 
-def load_users():
-    with open(USERS_PATH, 'r') as f:
-        return json.load(f)
+def save_users_db(users_db: dict):
+    """Guarda la base de datos de usuarios en el archivo JSON."""
+    with open(USERS_FILE_PATH, 'w') as f:
+        json.dump(users_db, f, indent=2)
 
+def get_user(db: dict, email: str) -> Optional[dict]:
+    """Obtiene un usuario de la 'base de datos' por email."""
+    return db.get(email)
 
-def save_users(db: dict):
-    with open(USERS_PATH, 'w') as f:
-        json.dump(db, f, indent=2)
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Verifica la contraseña plana contra la hasheada."""
+    return pwd_context.verify(plain_password, hashed_password)
 
-# Excepción de credenciales inválidas
-credentials_exception = HTTPException(
-    status_code=status.HTTP_401_UNAUTHORIZED,
-    detail="Credenciales de autenticación inválidas",
-    headers={"WWW-Authenticate": "Bearer"},
-)
+def get_password_hash(password: str) -> str:
+    """Genera el hash de una contraseña."""
+    return pwd_context.hash(password)
 
-# Dependencia de autenticación
-def auth_user(token: str = Depends(oauth2)) -> User:
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
+    """Crea un nuevo token de acceso."""
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.now(timezone.utc) + expires_delta
+    else:
+        expire = datetime.now(timezone.utc) + timedelta(minutes=15)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserResponse:
+    """Decodifica el token y obtiene el usuario actual."""
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="No se pudieron validar las credenciales",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
     try:
-        payload = jwt.decode(token, secret, algorithms=[algoritmo])
-        first_name: str = payload.get("sub")
-        if not first_name:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("sub")
+        if email is None:
             raise credentials_exception
+        token_data = TokenData(email=email)
     except JWTError:
         raise credentials_exception
-
-    user_data = load_users().get(first_name)
-    if not user_data:
+    
+    users_db = load_users_db()
+    user_dict = get_user(users_db, token_data.email)
+    if user_dict is None:
         raise credentials_exception
-    return User(**user_data)
+    # Excluir 'hashed_password' antes de pasarlo a UserResponse
+    user_info_for_response = {k: v for k, v in user_dict.items() if k != 'hashed_password'}
+    return UserResponse(**user_info_for_response)
 
-# Endpoints
+
+# Endpoints de Autenticación
+
 @router.post("/login")
-async def login(form: OAuth2PasswordRequestForm = Depends()):
-    users = load_users()
-    user_db = users.get(form.username)
-    if not user_db:
-        raise HTTPException(status_code=400, detail="Usuario incorrecto")
+async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+    """
+    Endpoint de login. Espera 'username' (que será el email) y 'password'.
+    Devuelve un token de acceso.
+    """
+    users_db = load_users_db()
+    user = get_user(users_db, form_data.username) # form_data.username será el email
+    if not user or not verify_password(form_data.password, user["hashed_password"]):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Email o contraseña incorrectos",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": user["email"], "firstName": user["first_name"], "lastName": user["last_name"]}, 
+        expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer", "first_name": user["first_name"]}
 
-    if not crypt.verify(form.password, user_db['password']):
-        raise HTTPException(status_code=400, detail="Contraseña incorrecta")
-
-    expire = datetime.utcnow() + timedelta(minutes=access_token_time)
-    token_data = {"sub": user_db['first_name'], "exp": expire}
-    token = jwt.encode(token_data, secret, algorithm=algoritmo)
-    return {"access_token": token, "token_type": "bearer"}
-
-@router.post("/register")
-async def register(
+@router.post("/register", response_model=UserResponse)
+async def register_user(
     first_name: str = Form(...),
     last_name: str = Form(...),
-    email: EmailStr = Form(...),
+    email: EmailStr = Form(...), # Pydantic valida el formato del email
     age: int = Form(...),
     password: str = Form(...)
 ):
-    # Validación de campos
-    data = RegisterModel(
-        first_name=first_name,
-        last_name=last_name,
-        email=email,
-        age=age,
-        password=password
+    """Endpoint de registro de nuevos usuarios."""
+    try:
+        user_data = UserCreate(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            age=age,
+            password=password  # La validación de longitud y edad se hace en UserCreate
+        )
+    except ValueError as e: # Captura errores de validación de Pydantic
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+
+    users_db = load_users_db()
+    if user_data.email in users_db:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="El email ya está registrado.")
+
+    hashed_password = get_password_hash(user_data.password)
+    
+    new_user_data_for_db = {
+        "email": user_data.email,
+        "first_name": user_data.first_name,
+        "last_name": user_data.last_name,
+        "age": user_data.age,
+        "hashed_password": hashed_password
+    }
+    users_db[user_data.email] = new_user_data_for_db
+    save_users_db(users_db)
+
+    return UserResponse(
+        email=user_data.email,
+        first_name=user_data.first_name,
+        last_name=user_data.last_name,
+        age=user_data.age
     )
 
-    db = load_users()
-    # usar first_name como username
-    username = data.first_name
-    if username in db:
-        raise HTTPException(status_code=400, detail="Usuario ya existe")
-
-    hashed = crypt.hash(data.password)
-    db[username] = {
-        "username": username,
-        "first_name": data.first_name,
-        "last_name": data.last_name,
-        "email": data.email,
-        "age": data.age,
-        "password": hashed
-    }
-    save_users(db)
-    return {"message": "Usuario registrado correctamente"}
-
-@router.get("/users/me")
-async def me(user: User = Depends(auth_user)):
-    return user
+@router.get("/users/me", response_model=UserResponse)
+async def read_users_me(current_user: UserResponse = Depends(get_current_user)):
+    """Endpoint para obtener la información del usuario actualmente logueado."""
+    return current_user
