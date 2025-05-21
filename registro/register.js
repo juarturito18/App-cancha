@@ -1,4 +1,3 @@
-// register.js corregido
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
   event.preventDefault();
   const firstName = document.getElementById('first_name').value;
@@ -10,7 +9,6 @@ document.getElementById('registerForm').addEventListener('submit', async functio
   responseElement.textContent = '';
   responseElement.className = '';
 
-  // Validaciones básicas en cliente
   if (parseInt(age) < 18) {
     responseElement.textContent = 'Debes ser mayor de 18 años para registrarte.';
     responseElement.className = 'error';

@@ -12,5 +12,12 @@
     "last_name": "Sabino",
     "age": 18,
     "hashed_password": "$2b$12$sut.tp.xxOIF..X8LEvFJ.hLE.lCOCDucYaaSMtsxTEHr4uZ68S2u"
+  },
+  "jorge@gmail.com": {
+    "email": "jorge@gmail.com",
+    "first_name": "jorge",
+    "last_name": "sabino",
+    "age": 20,
+    "hashed_password": "$2b$12$BX4I6Jv0J9F8wyIdXJjCtOr.cOGQjqmbE4hEn15hDOdpL9XUBO9AK"
   }
 }

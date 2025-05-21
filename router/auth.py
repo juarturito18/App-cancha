@@ -111,11 +111,10 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserResponse:
     user_dict = get_user(users_db, email)
     if user_dict is None:
         raise credentials_exception
-    # Excluir la contraseña del resultado
+
     user_info = {k: v for k, v in user_dict.items() if k != "hashed_password"}
     return UserResponse(**user_info)
 
-# Endpoint de login: recibe OAuth2 form (username=email, password) y devuelve JWT
 @router.post("/login")
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     users_db = load_users_db()

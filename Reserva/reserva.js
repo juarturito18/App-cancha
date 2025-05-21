@@ -115,22 +115,36 @@ async function actualizarCanchasDisponibles() {
   }
 }
 
-// Enviar reserva al backend y actualizar CSV
 // Enviar reserva al backend y actualizar CSV o JSON
 async function guardarReservaServidor(nombre, email, fecha, cancha, hora) {
+  const reservaData = { nombre, email, fecha, cancha, hora };
+
   try {
-    const response = await fetch("http://localhost:8000/reservar", {
+    // 1. Actualizar disponibilidad en CSV
+    const responseCSV = await fetch("http://localhost:8000/reservar", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ nombre, email, fecha, cancha, hora })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reservaData)
     });
 
-    const data = await response.json();
+    const dataCSV = await responseCSV.json();
 
-    if (!response.ok) {
-      alert(data.detail || "No se pudo realizar la reserva.");
+    if (!responseCSV.ok) {
+      alert(dataCSV.detail || "No se pudo realizar la reserva.");
+      return false;
+    }
+
+    // 2. Guardar la reserva en el JSON
+    const responseJSON = await fetch("http://localhost:8000/reservas/guardar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reservaData)
+    });
+
+    const dataJSON = await responseJSON.json();
+
+    if (!responseJSON.ok) {
+      alert(dataJSON.detail || "La reserva se hizo pero no se guardó correctamente.");
       return false;
     }
 

@@ -25,11 +25,11 @@
             logoutButton.addEventListener('click', () => {
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('userFirstName');
+                localStorage.removeItem("userEmail");
                 window.location.reload(); // Recargar para reflejar el estado de logout
             });
 
             goToReservaButton.addEventListener('click', () => {
-                // Asumiendo que la página de reserva está en /reservar/reserva.html
                 // y que main.py la sirve desde el directorio "Reserva"
                 window.location.href = '/reservar/reserva.html'; 
             });
@@ -47,6 +47,8 @@
             // Limpiar por si acaso quedaron restos de un token inválido
             localStorage.removeItem('accessToken');
             localStorage.removeItem('userFirstName');
+            localStorage.removeItem("userEmail");
+
         }
     });
 

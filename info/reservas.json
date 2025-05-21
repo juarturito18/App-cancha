@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "jorge",
+    "email": "jorge@gmail.com",
+    "fecha": "2025-05-22",
+    "hora": "18:00",
+    "cancha": "Cancha Sagrado corazón"
+  },
+  {
+    "nombre": "Juan Sabino",
+    "email": "juanestebansabinogomez@gmail.com",
+    "fecha": "2025-05-23",
+    "hora": "18:00",
+    "cancha": "Cancha Múltiple San Carlos Borromeo"
+  }
+]

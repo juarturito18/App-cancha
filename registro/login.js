@@ -1,4 +1,3 @@
-// login.js corregido
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
   event.preventDefault();
   const email = document.getElementById('email').value;
@@ -13,7 +12,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
   formData.append('password', password);
 
   try {
-    // Enviar POST al endpoint /login
     const res = await fetch('http://127.0.0.1:8000/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -28,13 +26,12 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       // Guardar token y nombre en localStorage
       localStorage.setItem('accessToken', data.access_token);
       localStorage.setItem('userFirstName', data.first_name || '');
-
+      localStorage.setItem('userEmail', email);
       // Redirigir a la página principal tras breve espera
       setTimeout(() => {
         window.location.href = 'http://127.0.0.1:8000/index/';  // Ajustar según ruta real del índice
       }, 1500);
     } else {
-      // Mostrar error devuelto por el backend
       responseElement.textContent = data.detail || 'Error al iniciar sesión. Verifica tus credenciales.';
       responseElement.className = 'error';
     }
