@@ -19,5 +19,19 @@
     "last_name": "sabino",
     "age": 20,
     "hashed_password": "$2b$12$BX4I6Jv0J9F8wyIdXJjCtOr.cOGQjqmbE4hEn15hDOdpL9XUBO9AK"
+  },
+  "zcaamano866@gmail.com": {
+    "email": "zcaamano866@gmail.com",
+    "first_name": "zharick",
+    "last_name": "caama\u00f1o",
+    "age": 18,
+    "hashed_password": "$2b$12$y5svzJSgtAKOkruZk5waGebbrPrc3tgr/LMZbttc8GyfENojz/iIG"
+  },
+  "stiven@gmail.com": {
+    "email": "stiven@gmail.com",
+    "first_name": "stiven",
+    "last_name": "gomez",
+    "age": 18,
+    "hashed_password": "$2b$12$/ps591ax.olB8U/sV6uMKuC9WhTmXZENhCrGO5jPEciCIqpxFNgna"
   }
 }
