@@ -11,7 +11,7 @@ async function generarPDF() {
   }
 
   // Validar disponibilidad en el servidor antes de reservar
-  const reservaExitosa = await guardarReservaServidor(cancha, hora);
+  const reservaExitosa = await guardarReservaServidor(nombre, email, fecha, cancha, hora);
   if (!reservaExitosa) return;
 
   // Generar PDF
@@ -116,14 +116,15 @@ async function actualizarCanchasDisponibles() {
 }
 
 // Enviar reserva al backend y actualizar CSV
-async function guardarReservaServidor(cancha, hora) {
+// Enviar reserva al backend y actualizar CSV o JSON
+async function guardarReservaServidor(nombre, email, fecha, cancha, hora) {
   try {
     const response = await fetch("http://localhost:8000/reservar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ cancha, hora })
+      body: JSON.stringify({ nombre, email, fecha, cancha, hora })
     });
 
     const data = await response.json();
@@ -140,4 +141,5 @@ async function guardarReservaServidor(cancha, hora) {
     return false;
   }
 }
+
 

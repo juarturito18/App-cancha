@@ -4,20 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro de Usuario</title>
-  <link rel="stylesheet" href="style_reserva.css"> <style>
-    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background-color: #f4f4f4; margin: 0; }
-    .container { background-color: white; padding: 20px 40px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 400px; }
-    h2 { color: #333; margin-bottom: 20px; }
-    input[type="text"], input[type="email"], input[type="number"], input[type="password"] { width: calc(100% - 22px); padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-    button[type="submit"] { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; }
-    button[type="submit"]:hover { background-color: #0056b3; }
-    #response { margin-top: 15px; font-weight: bold; }
-    .success { color: green; }
-    .error { color: red; }
-    .login-link { margin-top: 20px; }
-    .login-link a { color: #007bff; text-decoration: none; }
-    .login-link a:hover { text-decoration: underline; }
-  </style>
+  <link rel="stylesheet" href="style_registro.css">
 </head>
 <body>
   <div class="container">
@@ -26,80 +13,17 @@
       <input type="text" id="first_name" placeholder="Nombre" required><br>
       <input type="text" id="last_name" placeholder="Apellido" required><br>
       <input type="email" id="email" placeholder="Correo Electrónico" required><br>
-      <input type="number" id="age" placeholder="Edad" required min="0"><br> <input type="password" id="password" placeholder="Contraseña" required><br>
+      <input type="number" id="age" placeholder="Edad" required min="18"><br>
+      <input type="password" id="password" placeholder="Contraseña" required><br>
       <button type="submit">Registrar</button>
     </form>
     <p id="response"></p>
     <div class="login-link">
-      ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+      ¿Ya tienes cuenta? 
+      <a href="http://127.0.0.1:8000/auth/login.html">Inicia sesión aquí</a>
     </div>
   </div>
 
-  <script>
-    document.getElementById('registerForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
-      const firstName = document.getElementById('first_name').value;
-      const lastName = document.getElementById('last_name').value;
-      const email = document.getElementById('email').value;
-      const age = document.getElementById('age').value;
-      const password = document.getElementById('password').value;
-      const responseElement = document.getElementById('response');
-      responseElement.textContent = ''; // Limpiar mensajes previos
-      responseElement.className = ''; // Limpiar clases de estilo previas
-
-      // Validaciones del lado del cliente (básicas, el backend es la autoridad)
-      if (parseInt(age) < 18) {
-        responseElement.textContent = 'Debes ser mayor de 18 años para registrarte.';
-        responseElement.className = 'error';
-        return;
-      }
-      if (password.length < 8) {
-        responseElement.textContent = 'La contraseña debe tener al menos 8 caracteres.';
-        responseElement.className = 'error';
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('first_name', firstName);
-      formData.append('last_name', lastName);
-      formData.append('email', email);
-      formData.append('age', age);
-      formData.append('password', password);
-
-      try {
-        const res = await fetch('/register', { // Ajusta la URL si tu endpoint de registro está en un prefijo (ej: /auth/register)
-          method: 'POST',
-          body: formData // FormData se envía como multipart/form-data por defecto
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-          responseElement.textContent = '¡Registro exitoso, ' + data.first_name + '! Ahora puedes iniciar sesión.';
-          responseElement.className = 'success';
-           // Opcional: redirigir a login después de un breve retraso
-          setTimeout(() => {
-            window.location.href = 'login.html';
-          }, 2000);
-        } else {
-          // Intentar obtener el detalle del error del backend
-          let errorMessage = 'Error en el registro.';
-          if (data && data.detail) {
-            if (Array.isArray(data.detail)) { // Errores de validación de Pydantic pueden ser un array
-                errorMessage = data.detail.map(err => `${err.loc.join('.')} - ${err.msg}`).join('; ');
-            } else {
-                errorMessage = data.detail;
-            }
-          }
-          responseElement.textContent = errorMessage;
-          responseElement.className = 'error';
-        }
-      } catch (error) {
-        console.error('Error en el registro:', error);
-        responseElement.textContent = 'Ocurrió un error en la conexión. Inténtalo de nuevo.';
-        responseElement.className = 'error';
-      }
-    });
-  </script>
+  <script src="register.js"></script>
 </body>
 </html>

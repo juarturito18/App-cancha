@@ -1,12 +1,13 @@
-/* Fuente general y reset básico */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #d4fcd4, #f0fff0); /* fondo suave verde-blanco */
+  background-image: url("pateada\ copy.jpg");
+  background-size: cover;      
+  background-position: center;    
+  background-repeat: no-repeat; 
   color: #1b5e20;
 }
 
-/* Encabezado principal */
 header {
   background-color: #2e7d32;
   padding: 20px;
@@ -20,7 +21,6 @@ h1 {
   margin: 0;
 }
 
-/* Mensaje de bienvenida */
 .intro {
   background-color: white;
   margin: 20px auto;
@@ -32,13 +32,13 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Contenedor principal */
 .container {
   background-color: white;
   max-width: 960px;
   margin: 20px auto;
   padding: 30px;
   border-radius: 20px;
+  border: #66bb6a solid 4px;
   box-shadow: 0 0 12px rgba(0, 128, 0, 0.1);
 }
 
@@ -47,7 +47,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Botones de mapa */
 button {
   background-color: #43a047;
   color: white;
@@ -69,6 +68,44 @@ iframe {
   border: 2px solid #66bb6a;
   border-radius: 12px;
   margin-top: 15px;
+}
+header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 10px 20px; 
+  color: white; 
+}
+
+header h1 {
+   margin: 0; 
+}
+nav a { 
+  color: white;
+   text-decoration: none;
+    margin-left: 15px;
+}
+nav a:hover {
+   text-decoration: underline;
+}
+#user-greeting { 
+  margin-left: auto;
+}
+#user-greeting span { 
+  font-weight: bold;
+}
+#logout-button { 
+  background-color: #ffffff;
+   color: #2e7d32;
+  border: none;
+  padding: 5px 10px; 
+  border-radius: 3px; 
+  cursor: pointer; 
+  margin-left: 10px; 
+}
+
+#logout-button:hover { 
+  background-color: #c9302c; 
 }
 
 /* Responsividad para móviles */

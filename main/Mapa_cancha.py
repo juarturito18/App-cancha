@@ -21,7 +21,7 @@ for i in range(3, 9):
     marker = fl.FeatureGroup(name="Disponibilidad").add_to(mapa)
 
     for r, (lt, ln, nm, tp, br, d, dr) in enumerate(zip(lat, lon, name, tipo, barrio, dis, direc)):
-        message = "<a href='http://127.0.0.1:8000/reservar/reserva.html' target='_blank'>Reserva aquí</a>" if d else "La cancha se encuentra ocupada"
+        message = "La cancha esta libre" if d else "La cancha se encuentra ocupada"
 
         if d:
             icon_path = "championship (1).png"  

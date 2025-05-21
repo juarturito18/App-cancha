@@ -12,7 +12,7 @@ body {
   color: #1b5e20;
 }
 
-.form-container {
+#loginForm, #registerForm {
   background: white;
   padding: 40px;
   border-radius: 20px;
@@ -22,7 +22,7 @@ body {
   text-align: center;
 }
 
-h1 {
+h2 {
   font-size: 32px;
   margin-bottom: 20px;
   color: #1b5e20;
@@ -36,10 +36,7 @@ label {
   color: #2e7d32;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="time"],
-input[type="email"],
+input,
 select {
   width: 100%;
   padding: 10px;
@@ -74,7 +71,6 @@ button:hover {
   background-color: #2e7d32;
 }
 
-/* Responsivo para móviles */
 @media screen and (max-width: 768px) {
   .form-container {
     padding: 25px 20px;
