@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const misReservas = await response.json();
 
     if (misReservas.length === 0) {
-        contenedor.innerHTML = "<p>No tienes reservas.</p>";
+        contenedor.innerHTML = "<p class ='no-reservas'>No tienes reservas.</p>";
         return;
     }
 
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <p><strong>Cancha:</strong> ${reserva.cancha}</p>
             <p><strong>Fecha:</strong> ${reserva.fecha}</p>
             <p><strong>Hora:</strong> ${reserva.hora}</p>
-            <button>Cancelar</button>
+            <button class ="btn-cancelar">Cancelar</button>
         `;
 
         const btn = div.querySelector("button");
